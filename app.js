@@ -30,7 +30,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', middleware.checkAuthentication ,routes.index);
+app.get('/' ,routes.index);
+//app.get('/', middleware.checkAuthentication ,routes.index);
 app.get('/authenticate', routes.authenticate);
 
 http.createServer(app).listen(app.get('port'), function(){
