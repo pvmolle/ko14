@@ -7,6 +7,11 @@
 /***********
 * Styles
 ************/
+h1 img {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4%; }
+
 .over {
   border: 2px dashed #000; }
 
@@ -14,18 +19,28 @@
   opacity: 0.4;
   filter: alpha(opacity=40);
   -webkit-animation: SMALL 1s;
-  /* Safari 4+ */
   -moz-animation: SMALL 1s;
-  /* Fx 5+ */
   -o-animation: SMALL 1s;
-  /* Opera 12+ */
   animation: SMALL 1s;
-  /* IE 10+ */
   -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);
   -ms-transform: scale(0.5);
   -o-transform: scale(0.5);
   transform: scale(0.5); }
+
+.slide-out {
+  -webkit-animation: OUT 1s;
+  -moz-animation: OUT 1s;
+  -o-animation: OUT 1s;
+  animation: OUT 1s;
+  bottom: 100%; }
+
+.slide-in {
+  -webkit-animation: IN 1s;
+  -moz-animation: IN 1s;
+  -o-animation: IN 1s;
+  animation: IN 1s;
+  top: 0% !important; }
 
 html, body {
   height: 100%; }
@@ -72,53 +87,66 @@ section.vs {
         -webkit-user-drag: none;
         /* Prevents dragging of images/divs etc */
         user-drag: none; }
-  section.vs .arena {
-    float: left;
+  section.vs section#content {
     width: 80%;
+    float: left;
     height: inherit;
-    background-color: #ffac6b;
     position: relative; }
-    section.vs .arena .side1 {
-      border-right: 2px solid #ffffff;
-      float: left;
-      width: 50%;
-      box-sizing: border-box;
-      height: inherit; }
-    section.vs .arena .side2 {
-      border-left: 2px solid #ffffff;
-      float: left;
-      width: 50%;
-      box-sizing: border-box;
-      height: inherit; }
-    section.vs .arena .start {
-      background-color: #45D03E !important;
-      cursor: pointer; }
-    section.vs .arena .vs-circle {
-      position: absolute;
-      width: 20%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      border-radius: 50%;
-      height: 30%;
-      background-color: #FD6A6E;
-      top: 30%;
-      left: 40%;
-      box-sizing: border-box;
-      border: solid 5px #ffffff; }
-      section.vs .arena .vs-circle div {
-        position: relative;
+    section.vs section#content .slide {
+      width: 100%;
+      height: inherit;
+      position: absolute; }
+    section.vs section#content .arena {
+      background-color: #ffac6b;
+      position: relative;
+      height: inherit;
+      width: 100%; }
+      section.vs section#content .arena .side1 {
+        border-right: 2px solid #ffffff;
         float: left;
-        width: 100%;
-        height: 100%; }
-        section.vs .arena .vs-circle div p {
-          position: absolute;
-          top: 38%;
+        width: 50%;
+        box-sizing: border-box;
+        height: inherit; }
+      section.vs section#content .arena .side2 {
+        border-left: 2px solid #ffffff;
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        height: inherit; }
+      section.vs section#content .arena .start {
+        background-color: #45D03E !important;
+        cursor: pointer; }
+      section.vs section#content .arena .vs-circle {
+        position: absolute;
+        width: 20%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        height: 30%;
+        background-color: #FD6A6E;
+        top: 30%;
+        left: 40%;
+        box-sizing: border-box;
+        border: solid 5px #ffffff; }
+        section.vs section#content .arena .vs-circle div {
+          position: relative;
+          float: left;
           width: 100%;
-          text-align: center;
-          font-size: 3em;
-          font-weight: bold;
-          color: #ffffff; }
+          height: 100%; }
+          section.vs section#content .arena .vs-circle div p {
+            position: absolute;
+            top: 38%;
+            width: 100%;
+            text-align: center;
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffffff; }
+  section.vs .results {
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    background-color: #000000; }
 
 /***********
 * Animations
@@ -150,3 +178,59 @@ section.vs {
 
   100% {
     transform: scale(0.5); } }
+
+@-webkit-keyframes OUT {
+  0% {
+    bottom: 0%; }
+
+  100% {
+    bottom: 100%; } }
+
+@-moz-keyframes OUT {
+  0% {
+    bottom: 0%; }
+
+  100% {
+    bottom: 100%; } }
+
+@-o-keyframes OUT {
+  0% {
+    bottom: 0%; }
+
+  100% {
+    bottom: 100%; } }
+
+@keyframes OUT {
+  0% {
+    bottom: 0%; }
+
+  100% {
+    bottom: 100%; } }
+
+@-webkit-keyframes IN {
+  0% {
+    top: 100%; }
+
+  100% {
+    top: 0%; } }
+
+@-moz-keyframes IN {
+  0% {
+    top: 100%; }
+
+  100% {
+    top: 0%; } }
+
+@-o-keyframes IN {
+  0% {
+    top: 100%; }
+
+  100% {
+    top: 0%; } }
+
+@keyframes IN {
+  0% {
+    top: 100%; }
+
+  100% {
+    top: 0%; } }

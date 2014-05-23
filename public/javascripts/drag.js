@@ -7,7 +7,7 @@
     var images = [];
 
     function preload() {
-        for (i = 0; i < arguments.length; i++) {
+        for (var i = 0; i < arguments.length; i++) {
             images[i] = new Image();
             images[i].src = arguments[i]
         }
@@ -32,7 +32,6 @@
     }
 
     function handleDragEnter(e) {
-        console.log('enter');
         this.classList.add('over');
     }
 
@@ -67,10 +66,14 @@
         var btn = document.getElementById('start');
         var el = btn.getElementsByClassName('text')[0];
 
-        console.log(el);
         el.innerHTML = 'Battle';
-
         btn.classList.add('start');
+
+        var slideIn = document.getElementsByClassName('slide')[0];
+        slideIn.classList.add('slide-out');
+
+        var results = document.getElementsByClassName('results')[0];
+        results.classList.add('slide-in');
     }
 
     function handleDragEnd(e) {
