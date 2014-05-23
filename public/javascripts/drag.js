@@ -4,10 +4,21 @@
     var side1;
     var side2;
     var el;
+    var images = [];
+
+    function preload() {
+        for (i = 0; i < arguments.length; i++) {
+            images[i] = new Image();
+            images[i].src = arguments[i]
+        }
+    }
 
     function handleDragStart(e) {
         el = this;
         this.classList.add('drag');
+        preload(
+            "/img/politicians/" + el.getAttribute('data-img')
+        );
     }
 
     function handleDragOver(e) {
