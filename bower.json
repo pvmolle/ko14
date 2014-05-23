@@ -6,6 +6,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jquery": "1.10.2"
+    "jquery": "2.*",
+    "bootstrap" : "*",
+    "jquery-ui": "*"
   }
 }
