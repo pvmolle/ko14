@@ -1,0 +1,152 @@
+/***********
+* Variables
+************/
+/***********
+* Mixins
+************/
+/***********
+* Styles
+************/
+.over {
+  border: 2px dashed #000; }
+
+.drag {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  -webkit-animation: SMALL 1s;
+  /* Safari 4+ */
+  -moz-animation: SMALL 1s;
+  /* Fx 5+ */
+  -o-animation: SMALL 1s;
+  /* Opera 12+ */
+  animation: SMALL 1s;
+  /* IE 10+ */
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  transform: scale(0.5); }
+
+html, body {
+  height: 100%; }
+
+section.vs {
+  width: 100%;
+  height: 100%; }
+  section.vs .politicians {
+    float: left;
+    width: 20%;
+    height: inherit;
+    background-color: #4ebbb7; }
+    section.vs .politicians .party h3 {
+      padding: 2%;
+      margin: 0;
+      color: #ffffff;
+      font-size: 2.5em;
+      margin-top: 25px; }
+    section.vs .politicians .politician {
+      float: left;
+      width: 46%;
+      box-sizing: border-box;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* Required to make elements draggable in old WebKit */
+      -khtml-user-drag: element;
+      -webkit-user-drag: element;
+      border: 4px solid white;
+      background-color: #000000;
+      margin: 2%; }
+      section.vs .politicians .politician img {
+        float: left;
+        width: 100%;
+        cursor: move;
+        -moz-user-select: none;
+        /* These user-select properties are inheritable, used to prevent text selection */
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        /* From IE10 only */
+        user-select: none;
+        /* Not valid CSS yet, as of July 2012 */
+        -webkit-user-drag: none;
+        /* Prevents dragging of images/divs etc */
+        user-drag: none; }
+  section.vs .arena {
+    float: left;
+    width: 80%;
+    height: inherit;
+    background-color: #ffac6b;
+    position: relative; }
+    section.vs .arena .side1 {
+      border-right: 2px solid #ffffff;
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+      height: inherit; }
+    section.vs .arena .side2 {
+      border-left: 2px solid #ffffff;
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+      height: inherit; }
+    section.vs .arena .start {
+      background-color: #45D03E !important;
+      cursor: pointer; }
+    section.vs .arena .vs-circle {
+      position: absolute;
+      width: 20%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      border-radius: 50%;
+      height: 30%;
+      background-color: #FD6A6E;
+      top: 30%;
+      left: 40%;
+      box-sizing: border-box;
+      border: solid 5px #ffffff; }
+      section.vs .arena .vs-circle div {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100%; }
+        section.vs .arena .vs-circle div p {
+          position: absolute;
+          top: 38%;
+          width: 100%;
+          text-align: center;
+          font-size: 3em;
+          font-weight: bold;
+          color: #ffffff; }
+
+/***********
+* Animations
+************/
+@-webkit-keyframes SMALL {
+  0% {
+    -webkit-transform: scale(1); }
+
+  100% {
+    -webkit-transform: scale(0.5); } }
+
+@-moz-keyframes SMALL {
+  0% {
+    -moz-transform: scale(1); }
+
+  100% {
+    -moz-transform: scale(0.5); } }
+
+@-o-keyframes SMALL {
+  0% {
+    -o-transform: scale(1); }
+
+  100% {
+    -o-transform: scale(0.5); } }
+
+@keyframes SMALL {
+  0% {
+    transform: scale(1); }
+
+  100% {
+    transform: scale(0.5); } }
