@@ -1,12 +1,11 @@
 {
     "private": true,
-    "name": "PBattle",
+    "name": "ko14",
     "description": "A hackaton project",
     "license": "MIT",
     "dependencies": {
         "express": "3.4.8",
         "jade": "*",
-        "bower": "1.3.3",
         "request": "2.36.0"
     },
     "devDependencies": {
@@ -18,7 +17,6 @@
     },
     "scripts": {
         "start": "node app.js",
-        "postinstall": "./node_modules/bower/bin/bower install"
     },
     "engines": {
         "node": "0.10.x"
