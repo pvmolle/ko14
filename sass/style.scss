@@ -5,6 +5,7 @@ body {
 	padding: 0;
 	background: url(../images/background.png) repeat;
 	font-family: $font2;
+	color: rgba(0,0,0,0.8);
 }
 
 main {
@@ -62,7 +63,7 @@ main {
 			font-size: 30px;
 			text-align: center;
 			font-family: $font2;
-			color: #000;
+			color: rgba(0,0,0,0.8);
 			text-decoration: none;
 		}
 	}
@@ -209,9 +210,28 @@ main {
 
 				text-align: center;
 				font-size: 200px;
+				line-height: 300px;
 				font-family: $font2;
+				color: rgba(0,0,0,0.8);
 			}
+			.half:nth-child(1) {
+				border-bottom: 10px solid $blue;
+			}
+
+			.half:nth-child(2) {
+				border-bottom: 10px solid $red;
+			}
+
 		}
+	}
+}
+
+footer {
+	display: block;
+	text-align: center;
+
+	img {
+		width: 100px;
 	}
 }
 
