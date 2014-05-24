@@ -33,7 +33,9 @@ if ('development' == app.get('env')) {
 app.get('/' ,routes.index);
 //app.get('/', middleware.checkAuthentication ,routes.index);
 app.get('/authenticate', routes.authenticate);
+app.get('/app/:fighterOne/:fighterTwo',routes.getData);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
