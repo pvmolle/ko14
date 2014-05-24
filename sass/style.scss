@@ -143,15 +143,34 @@ main {
 	}
 
 	main {
-
-		.half {
-			width: 50%;
+		.keuze {
+			padding: 0 50px;
+			text-align: center;
+			margin: 20px 0 20px 0;
 			float: left;
 
-			span {
-				display: inline-block;
+			a {
+				font-family: $font2;
+				font-size: 24px;
+				color: #000;
+			}
+
+			.kleur1 a {
+				border-left: 4px solid $red;
+				padding: 5px 0 5px 10px;
+				text-decoration: none;
+			}
+		}
+
+		.score {
+			float: left;
+			padding: 20px 50px;
+
+			.half {
+				width: 550px;
+				float: left;
+
 				text-align: center;
-				width: 100%;
 				font-size: 200px;
 				font-family: $font2;
 			}
