@@ -139,7 +139,7 @@ exports.getData = function (req, res) {
         getPosi(idTwo, fighterTwo,'positive', function (twoPosi) {
             getPosi(idOne, fighterOne,'negative', function (oneNega) {
                 getPosi(idTwo, fighterTwo,'negative', function (twoNega) {
-                    res.json({ fighterOne : createObject(fighterOne,onePosi,oneNega) , fighterTwo: createObject(fighterTwo,onePosi,oneNega) });
+                    res.json({ fighterOne : createObject(fighterOne,onePosi,oneNega) , fighterTwo: createObject(fighterTwo,twoPosi,twoNega) });
                 });
             });
         });
