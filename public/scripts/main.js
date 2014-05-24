@@ -268,7 +268,9 @@ $(function() {
 		},
 
 		checkWinner: function() {
-			if (0 === this.result.fighterOne.lives) {
+            var self = this;
+
+            if (0 === this.result.fighterOne.lives) {
 				document.getElementById('winner').src = this.fighterTwoSrc;
 				this.gameOver = true;
 			}
@@ -279,7 +281,9 @@ $(function() {
 			}
 
             if (this.gameOver){
-                this.scrollToWindow('result');
+                window.setTimeout(function() {
+                    self.scrollToWindow('result');
+                },1000);
             }
 		}
 	};
