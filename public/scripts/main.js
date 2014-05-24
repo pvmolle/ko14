@@ -63,7 +63,7 @@ $(function() {
 			this.activeRound = 0;
 			this.numFighters = 0;
 			this.counters = [];
-			this.categories = ['twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers'];
+			this.categories = ['twitterFollowers', 'mentions', 'negaposi', 'engament', 'applause'];
 			this.result = {};
 			this.gameOver = false;
 			this.fighters = {};
@@ -109,8 +109,29 @@ $(function() {
 		},
 
 		setCategoryActive: function(topic) {
+            var question;
 			this.activeCategory = this.categories[topic];
-		},
+
+            switch (this.activeCategory){
+                case 'twitterFollowers':
+                    question = "Who has the most twitter followers?";
+                    break;
+                case 'mentions':
+                    question = "Who is mentioned the most?";
+                    break;
+                case 'negaposi':
+                    question = "Who gets the most positive feedback?";
+                    break;
+                case 'engament':
+                    question = "Who engages the most with their followers?";
+                    break;
+                case 'applause':
+                    question = "Who creates the most buzz?";
+                    break;
+            }
+
+            document.getElementById('question').innerHTML = question;
+        },
 
 		nextRound: function() {
 			this.activeRound++;
@@ -141,6 +162,22 @@ $(function() {
 					this.counters[0] = this.result.fighterOne.twitter.followers;
 					this.counters[1] = this.result.fighterTwo.twitter.followers;
 					break;
+                case 'mentions':
+                    this.counters[0] = this.result.fighterOne.twitter.mentions;
+                    this.counters[1] = this.result.fighterTwo.twitter.mentions;
+                    break;
+                case 'negaposi':
+                    this.counters[0] = this.result.fighterOne.positives.twitterPositive;
+                    this.counters[1] = this.result.fighterTwo.positives.twitterPositive;
+                    break;
+                case 'engament':
+                    this.counters[0] = this.result.fighterOne.twitter.engamement + this.result.fighterOne.facebook.engamement;
+                    this.counters[1] = this.result.fighterTwo.twitter.engamement + this.result.fighterOne.facebook.engamement;
+                    break;
+                case 'applause':
+                    this.counters[0] = this.result.fighterOne.twitter.applause + this.result.fighterOne.facebook.applause;
+                    this.counters[1] = this.result.fighterTwo.twitter.applause + this.result.fighterOne.facebook.applause;
+                    break;
 			}
 		},
 
