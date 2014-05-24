@@ -86,6 +86,11 @@ $(function() {
 				var className = link.className.replace(/active/, '');
 				link.className = className;
 			});
+
+			var items = document.querySelectorAll('.fight1, .fight2');
+			[].forEach.call(items, function(item) {
+				item.innerHTML = 0;
+			});
 		},
 
 		setFighterActive: function(fighter) {
