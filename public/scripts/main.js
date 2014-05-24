@@ -29,12 +29,36 @@ $(function() {
 					self.fetchResults();
 				}
 			});
+
+			[].forEach.call(document.querySelectorAll('.keuze a'), function(link) {
+				link.addEventListener('click', function (evt) {
+					evt.preventDefault();
+
+					if (!self.result.fighterOne) {
+						return;
+					}
+
+					if (Array.prototype.indexOf.call(link.classList, 'active') > -1) {
+						return; 
+					}
+
+					if (self.counting) {
+						return;
+					}
+
+					self.setCategoryActive(link.id);
+					self.setCounters();
+					self.startCounters();
+				});
+			});
 		},
 
 		reset: function() {
 			this.activeRound = 0;
 			this.numFighters = 0;
 			this.counters = [];
+			this.categories = ['twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers'];
+			this.result = {};
 
 			[].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
@@ -59,8 +83,8 @@ $(function() {
 			this.numFighters = numFighters;
 		},
 
-		selectTopic: function(topic) {
-			this.activeTopic = topic;
+		setCategoryActive: function(topic) {
+			this.activeCategory = this.categories[topic];
 		},
 
 		nextRound: function() {
@@ -75,20 +99,30 @@ $(function() {
 			request.onload = function() {
 				if (200 === this.status) {
 					self.result = JSON.parse(this.responseText);
-					self.setCounters();
-					self.startCounters();
 				}
 			};
 			request.send();
 		},
 
 		setCounters: function() {
-			this.counters[0] = this.result.fighterOne.facebook.likes;
-			this.counters[1] = this.result.fighterTwo.facebook.likes;
+			if (!this.result.fighterOne) {
+				return;
+			}
+
+			debugger;
+
+			switch (this.activeCategory) {
+				case 'twitterFollowers':
+					this.counters[0] = this.result.fighterOne.twitter.followers;
+					this.counters[1] = this.result.fighterTwo.twitter.followers;
+					break;
+			}
 		},
 
-		startCounters: function() {
+		startCounters: function() {			
 			var self = this;
+
+			this.counting = false;
 
 			var items = document.querySelectorAll('.fight1, .fight2');
 			[].forEach.call(items, function(item) {
@@ -118,7 +152,21 @@ $(function() {
 				});
 
 				if (cont) return requestAnimFrame(loop);
+
+				self.declareRoundWinner();
 			})();
+		},
+
+		declareRoundWinner: function() {
+			this.counting = false;
+
+			if (this.counters[0] > this.counters[1]) {
+				alert(this.result.fighterOne.name + 'wins!');
+			} else if (this.counters[0] < this.counters[1]) {
+				alert(this.result.fighterTwo.name + 'wins!');
+			} else {
+				alert('Its a tie!');
+			}
 		}
 	};
 
