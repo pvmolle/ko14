@@ -46,7 +46,13 @@ $(function() {
 						return;
 					}
 
+					if (self.activeRound > 2 || self.gameOver) {
+						return;
+					}
+
 					self.setCategoryActive(link.id);
+					link.classList.add('active');
+					self.nextRound();
 					self.setCounters();
 					self.startCounters();
 				});
@@ -59,10 +65,16 @@ $(function() {
 			this.counters = [];
 			this.categories = ['twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers'];
 			this.result = {};
+			this.gameOver = false;
 
 			[].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
 				fighter.className = className;
+			});
+
+			[].forEach.call(document.querySelectorAll('.keuze a'), function(link) {
+				var className = link.className.replace(/active/, '');
+				link.className = className;
 			});
 		},
 
@@ -95,10 +107,12 @@ $(function() {
 			var request = new XMLHttpRequest();
 			var self = this;
 
-			request.open('GET', '/app/Bart Staes/Bart Staes', true);
+			request.open('GET', '/app/Guy Verhofstadt/Bart Staes', true);
 			request.onload = function() {
 				if (200 === this.status) {
 					self.result = JSON.parse(this.responseText);
+					self.result.fighterOne.lives = 100;
+					self.result.fighterTwo.lives = 100;
 				}
 			};
 			request.send();
@@ -158,14 +172,36 @@ $(function() {
 		},
 
 		declareRoundWinner: function() {
+			var self = this;
+
 			this.counting = false;
 
-			if (this.counters[0] > this.counters[1]) {
-				alert(this.result.fighterOne.name + 'wins!');
-			} else if (this.counters[0] < this.counters[1]) {
-				alert(this.result.fighterTwo.name + 'wins!');
+			if (this.counters[0] < this.counters[1]) {
+				this.result.fighterOne.lives -= 50;
+			} else if (this.counters[0] > this.counters[1]) {
+				this.result.fighterTwo.lives -= 50;
 			} else {
-				alert('Its a tie!');
+				this.result.fighterOne.lives -= 50;
+				this.result.fighterTwo.lives -= 50;
+			}
+
+			document.querySelector('.player1 .level span').style.width = this.result.fighterOne.lives + '%';	
+			document.querySelector('.player2 .level span').style.width = this.result.fighterTwo.lives + '%';
+
+			setTimeout(function() {
+				self.checkWinner();
+			}, 0);
+		},
+
+		checkWinner: function() {
+			if (0 === this.result.fighterOne.lives) {
+				return alert('Fighter 2 wins!');
+				this.gameOver = true;
+			}
+
+			if (0 === this.result.fighterTwo.lives) {
+				return alert('Fighter 1 wins!');
+				this.gameOver = true;
 			}
 		}
 	};
