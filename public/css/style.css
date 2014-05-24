@@ -1,0 +1,258 @@
+/* fonts */
+@font-face {
+  font-family: 'homestead_regularregular';
+  src: url("../fonts/homestead-regular-webfont.eot");
+  src: url("../fonts/homestead-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/homestead-regular-webfont.woff") format("woff"), url("../fonts/homestead-regular-webfont.ttf") format("truetype"), url("../fonts/homestead-regular-webfont.svg#homestead_regularregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'vincentregular';
+  src: url("../fonts/vincent-regular-webfont.eot");
+  src: url("../fonts/vincent-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vincent-regular-webfont.woff") format("woff"), url("../fonts/vincent-regular-webfont.ttf") format("truetype"), url("../fonts/vincent-regular-webfont.svg#vincentregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+#loader {
+  position: absolute;
+  bottom: 5%;
+  width: 100%; }
+  #loader p {
+    text-align: center; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url(../images/background.png) repeat;
+  font-family: "vincentregular";
+  color: rgba(0, 0, 0, 0.8); }
+
+html {
+  height: 100%; }
+
+body {
+  height: 100%; }
+
+.start, .battle, .result {
+  min-height: 100%; }
+
+main {
+  width: 1200px;
+  margin: 0 auto; }
+  main .col {
+    float: left;
+    width: 200px;
+    margin-right: 25px; }
+  main .col:nth-child(5) {
+    margin-right: 0; }
+
+.start header {
+  background: url(../images/header.png) no-repeat center center;
+  width: 100%;
+  height: 420px; }
+.start main .wrapper {
+  padding: 0 50px;
+  margin-top: -30px; }
+.start main img {
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  box-shadow: inset 0px 24px 0px 0px rgba(50, 50, 50, 0.3), 0px 1px 0px 2px rgba(50, 50, 50, 0.3); }
+.start main .active-1 {
+  border: 4px solid #85c3bc; }
+.start main .active-2 {
+  border: 4px solid #dd6d69; }
+.start main .button {
+  clear: both;
+  margin: 50px auto;
+  display: block;
+  width: 300px;
+  height: 60px;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.4);
+  line-height: 60px;
+  font-size: 30px;
+  text-align: center;
+  font-family: "vincentregular";
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none; }
+
+.battle header {
+  background: url(../images/header-battle.png) no-repeat center center;
+  height: 170px;
+  width: 100%;
+  margin: 20px auto 0 auto; }
+  .battle header .wrapper {
+    width: 1200px;
+    margin: 0 auto; }
+  .battle header .player1 {
+    position: relative;
+    float: left;
+    width: 500px;
+    margin: 52px 0 0 0;
+    height: 70px; }
+    .battle header .player1 img {
+      height: 60px;
+      width: 60px;
+      margin: 5px 0 0 40px;
+      border-radius: 30px;
+      float: left; }
+    .battle header .player1 .level {
+      width: 370px;
+      height: 24px;
+      position: relative;
+      margin: 24px 0 0 130px; }
+      .battle header .player1 .level span {
+        display: inline-block;
+        width: 100%;
+        height: 24px;
+        background: #dd6d69;
+        animation-duration: 2s;
+        -webkit-animation-duration: 2s;
+        animation-timing-function: linear;
+        -webkit-animation-timing-function: linear; }
+    .battle header .player1 .turn {
+      color: #85c3bc;
+      float: left;
+      margin: 43px 0 0 -60px;
+      font-size: 28px; }
+  .battle header .player2 {
+    position: relative;
+    float: left;
+    width: 500px;
+    height: 70px;
+    margin: 52px 0 0 200px; }
+    .battle header .player2 img {
+      height: 60px;
+      width: 60px;
+      margin: 5px 40px 0 0;
+      border-radius: 30px;
+      float: right; }
+    .battle header .player2 .level {
+      width: 370px;
+      height: 24px;
+      position: relative;
+      margin: 24px 130px 0 0; }
+      .battle header .player2 .level span {
+        display: inline-block;
+        width: 100%;
+        height: 24px;
+        background: #85c3bc;
+        float: right;
+        animation-duration: 2s;
+        -webkit-animation-duration: 2s;
+        animation-timing-function: linear;
+        -webkit-animation-timing-function: linear; }
+    .battle header .player2 .turn {
+      color: #dd6d69;
+      float: right;
+      margin: 43px -60px 0 0;
+      font-size: 28px; }
+.battle main .keuze {
+  padding: 0 50px;
+  text-align: center;
+  margin: 0 0 40px 0;
+  float: left; }
+  .battle main .keuze a {
+    font-family: "vincentregular";
+    font-size: 24px;
+    color: #000; }
+.battle main .kleur1 a {
+  border-left: 4px solid #dd6d69;
+  padding: 5px 0 5px 10px;
+  text-decoration: none; }
+.battle main .kleur2 a {
+  border-left: 4px solid #85c3bc;
+  padding: 5px 0 5px 10px;
+  text-decoration: none; }
+.battle main .kleur1 a.active {
+  color: #dd6d69; }
+.battle main .kleur2 a.active {
+  color: #85c3bc; }
+.battle main h1 {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-family: "vincentregular";
+  font-size: 32px; }
+.battle main .score {
+  float: left;
+  padding: 20px 50px; }
+  .battle main .score .half {
+    width: 550px;
+    float: left;
+    text-align: center;
+    font-size: 200px;
+    line-height: 300px;
+    font-family: "vincentregular";
+    color: rgba(0, 0, 0, 0.8); }
+  .battle main .score .half:nth-child(1) {
+    border-bottom: 10px solid #85c3bc; }
+  .battle main .score .half:nth-child(2) {
+    border-bottom: 10px solid #dd6d69; }
+
+.result header {
+  background: url(../images/header-winner.png) no-repeat center center;
+  width: 100%;
+  height: 300px; }
+.result .image {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto; }
+  .result .image img {
+    border-radius: 150px;
+    width: 100%;
+    max-height: 300px; }
+.result .button {
+  clear: both;
+  margin: 50px auto;
+  display: block;
+  width: 300px;
+  height: 60px;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.4);
+  line-height: 60px;
+  font-size: 30px;
+  text-align: center;
+  font-family: "vincentregular";
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none; }
+
+footer {
+  display: block;
+  float: left;
+  width: 100%; }
+  footer p {
+    text-align: center; }
+  footer img {
+    width: 100px; }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.7);
+  display: none; }
+
+.overlay .loading {
+  width: 200px;
+  height: 225px;
+  display: block;
+  left: 50%;
+  top: 50%;
+  margin-top: -100px;
+  margin-left: -112px;
+  position: absolute; }
+
+.loading img {
+  width: 200px;
+  height: 225px; }
+
+.clear {
+  clear: both; }
+
+.hide {
+  display: none; }
