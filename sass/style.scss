@@ -1,321 +1,92 @@
-/***********
-* Variables
-************/
+@import 'vars';
 
-$arena: #FFAC6B;
-$politicians: #4EBBB7;
-$pick: #363636;
-
-/***********
-* Mixins
-************/
-
-@mixin draggable {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../images/background.png) repeat;
 }
 
-@mixin unselectable {
-  -moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
-  -webkit-user-select: none;
-  -ms-user-select: none; /* From IE10 only */
-  user-select: none; /* Not valid CSS yet, as of July 2012 */
-  -webkit-user-drag: none; /* Prevents dragging of images/divs etc */
-  user-drag: none;
+main {
+	width: $width;
+	margin: 0 auto;
+
+	.col {
+		float: left;
+		width: 200px;
+		margin-right: 25px;
+	}
+	.col:nth-child(5) {
+		margin-right: 0;
+	}
 }
 
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  border-radius: $radius;
+.start {
+
+	header {
+		background: url(../images/header.png) no-repeat center center; 
+		width: 100%;
+		height: 486px;
+	}
+
+	main {
+		
+		.wrapper {
+			padding: 0 50px;
+		}
+
+		img {
+			border-radius: 100px;
+			width: 200px;
+			height: 200px;
+			box-shadow: inset 0px 24px 0px 0px rgba(50, 50, 50, 0.3), 0px 1px 0px 2px rgba(50, 50, 50, 0.3);
+		}
+
+		.active-1 {
+			border: 4px solid $blue;
+		}
+
+		.active-2 {
+			border: 4px solid $red;
+		}
+
+		.button {
+			clear: both;
+			margin: 50px auto;
+			display: block;
+			width: 300px;
+			height: 60px;
+			border-radius: 10px;
+			border: 3px solid rgba(0,0,0,0.4);
+			line-height: 60px;
+			font-size: 30px;
+			text-align: center;
+			font-family: $font2;
+			color: #000;
+			text-decoration: none;
+		}
+	}
 }
 
-@mixin opacity($op) {
-  opacity: $op;
-  filter: alpha(opacity=$op * 100);
+.battle {
+
+	header {
+		background: url(../images/header-battle.png) no-repeat;
+		height: 170px;
+		width: $width;
+		margin: 20px auto 0 auto;
+
+		.player1 {
+			width: 600px;
+			border: 1px solid #000;
+		}
+
+		.player2 {
+			width: 600px;
+			border: 1px solid #000;
+		}
+	}
 }
 
-@mixin side {
-  float: left;
-  width: 50%;
-  box-sizing: border-box;
-  height: inherit;
-}
-
-/***********
-* Styles
-************/
-
-h1 {
-  img {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 4%;
-  }
-}
-
-.over {
-  border: 2px dashed #000;
-}
-
-.drag {
-  @include opacity(0.4);
-  -webkit-animation: SMALL 1s;
-  -moz-animation: SMALL 1s;
-  -o-animation: SMALL 1s;
-  animation: SMALL 1s;
-  -webkit-transform: scale(0.5);
-  -moz-transform: scale(0.5);
-  -ms-transform: scale(0.5);
-  -o-transform: scale(0.5);
-  transform: scale(0.5);
-}
-
-.slide-out {
-  -webkit-animation: OUT 1s;
-  -moz-animation: OUT 1s;
-  -o-animation: OUT 1s;
-  animation: OUT 1s;
-  bottom: 100%;
-}
-
-.slide-in {
-  -webkit-animation: IN 1s;
-  -moz-animation: IN 1s;
-  -o-animation: IN 1s;
-  animation: IN 1s;
-  top: 0% !important;
-}
-
-html, body {
-  height: 100%;
-}
-
-section.vs {
-  width: 100%;
-  height: 100%;
-
-  .politicians {
-    float: left;
-    width: 20%;
-    height: inherit;
-    background-color: $politicians;
-
-    .party {
-      h3 {
-        padding: 2%;
-        margin: 0;
-        color: #ffffff;
-        font-size: 2.5em;
-        margin-top: 25px;
-      }
-    }
-
-    .politician {
-      float: left;
-      width: 46%;
-      box-sizing: border-box;
-      @include draggable;
-      border: 4px solid white;
-      background-color: #000000;
-      margin: 2%;
-
-      img {
-        float: left;
-        width: 100%;
-        cursor: move;
-
-        @include unselectable;
-      }
-    }
-  }
-
-  section#content {
-    width: 80%;
-    float: left;
-    height: inherit;
-    position: relative;
-
-    .slide {
-      width: 100%;
-      height: inherit;
-      position: absolute;
-    }
-
-    .arena {
-      background-color: $arena;
-      position: relative;
-      height: inherit;
-      width: 100%;
-
-      .side1 {
-        border-right: 2px solid #ffffff;
-        @include side;
-      }
-
-      .side2 {
-        border-left: 2px solid #ffffff;
-        @include side;
-      }
-
-      .start {
-        background-color: #45D03E !important;
-        cursor: pointer;
-      }
-
-      .vs-circle {
-        position: absolute;
-        width: 20%;
-        @include border-radius(50%);
-        height: 30%;
-        background-color: #FD6A6E;
-        top: 30%;
-        left: 40%;
-        box-sizing: border-box;
-        border: solid 5px #ffffff;
-
-        div {
-          position: relative;
-          float: left;
-          width: 100%;
-          height: 100%;
-          p {
-            position: absolute;
-            top: 38%;
-            width: 100%;
-            text-align: center;
-            font-size: 3em;
-            font-weight: bold;
-            color: #ffffff;
-          }
-        }
-      }
-    }
-  }
-
-  .results {
-    top: 100%;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-  }
-}
-
-/***********
-* Animations
-************/
-
-@-webkit-keyframes SMALL {
-  0% {
-    -webkit-transform: scale(1);
-  }
-  100% {
-    -webkit-transform: scale(0.5);
-  }
-}
-
-@-moz-keyframes SMALL {
-  0% {
-    -moz-transform: scale(1);
-  }
-  100% {
-    -moz-transform: scale(0.5);
-  }
-}
-
-@-o-keyframes SMALL {
-  0% {
-    -o-transform: scale(1);
-  }
-  100% {
-    -o-transform: scale(0.5);
-  }
-}
-
-@keyframes SMALL {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.5);
-  }
-}
-
-@-webkit-keyframes OUT {
-  0% {
-    bottom: 0%;
-  }
-  100% {
-    bottom: 100%;
-  }
-}
-
-@-moz-keyframes OUT {
-  0% {
-    bottom: 0%;
-  }
-  100% {
-    bottom: 100%;
-  }
-}
-
-@-o-keyframes OUT {
-  0% {
-    bottom: 0%;
-  }
-  100% {
-    bottom: 100%;
-  }
-}
-
-@keyframes OUT {
-  0% {
-    bottom: 0%;
-  }
-  100% {
-    bottom: 100%;
-  }
-}
-
-
-@-webkit-keyframes IN {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 0%;
-  }
-}
-
-@-moz-keyframes IN {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 0%;
-  }
-}
-
-@-o-keyframes IN {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 0%;
-  }
-}
-
-@keyframes IN {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 0%;
-  }
+.clear {
+	clear: both;
 }
