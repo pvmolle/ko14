@@ -109,8 +109,6 @@ $(function() {
 				return;
 			}
 
-			debugger;
-
 			switch (this.activeCategory) {
 				case 'twitterFollowers':
 					this.counters[0] = this.result.fighterOne.twitter.followers;
@@ -139,7 +137,9 @@ $(function() {
 
 					cont = false;
 
-					if (value + 10 < max) {
+					if (value + 100 < max) {
+						value += 100;
+					} else if (value + 10 < max) {
 						value += 10;
 					} else {
 						value++;
