@@ -70,19 +70,91 @@ main {
 .battle {
 
 	header {
-		background: url(../images/header-battle.png) no-repeat;
+		background: url(../images/header-battle.png) no-repeat center center;
 		height: 170px;
-		width: $width;
+		width: 100%;
 		margin: 20px auto 0 auto;
 
+		.wrapper {
+			width: $width;
+			margin: 0 auto;
+		}
+
 		.player1 {
-			width: 600px;
-			border: 1px solid #000;
+			position: relative;
+			float: left;
+			width: 500px;
+			margin: 52px 0 0 0;
+			height: 70px;
+			
+			img {
+				height: 60px;
+				width: 60px;
+				margin: 5px 0 0 40px;
+				border-radius: 30px;
+				float: left;
+			}
+
+			.level {
+				width: 370px;
+				height: 24px;
+				position: relative;
+				margin: 24px 0 0 130px;
+
+				span {
+					display: inline-block;
+					width: 40%;
+					height: 24px;
+					background: $red;
+				}
+			}
 		}
 
 		.player2 {
-			width: 600px;
-			border: 1px solid #000;
+			position: relative;
+			float: left;
+			width: 500px;
+			height: 70px;
+			margin: 52px 0 0 200px;
+
+			img {
+				height: 60px;
+				width: 60px;
+				margin: 5px 40px 0 0;
+				border-radius: 30px;
+				float: right;
+			}
+
+			.level {
+				width: 370px;
+				height: 24px;
+				position: relative;
+				margin: 24px 130px 0 0;
+
+				span {
+					display: inline-block;
+					width: 100%;
+					height: 24px;
+					background: $blue;
+					float: right;
+				}
+			}
+		}
+	}
+
+	main {
+
+		.half {
+			width: 50%;
+			float: left;
+
+			span {
+				display: inline-block;
+				text-align: center;
+				width: 100%;
+				font-size: 200px;
+				font-family: $font2;
+			}
 		}
 	}
 }
