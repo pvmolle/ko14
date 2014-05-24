@@ -283,6 +283,34 @@ main {
 		color: rgba(0,0,0,0.8);
 		text-decoration: none;
 	}
+
+	.social {
+		text-align: center;
+		.button2 {
+			display: inline-block;
+			width: 150px;
+			height: 40px;
+			border-radius: 10px;
+			border: 3px solid rgba(0,0,0,0.4);
+			line-height: 40px;
+			font-size: 20px;
+			text-align: center;
+			font-family: $font2;
+			color: rgba(0,0,0,0.8);
+			text-decoration: none;
+		}
+		.button2.facebook {
+			border: 3px solid #3b5998;
+		}
+		.button2.twitter {
+			border: 3px solid #00aced;
+		}
+		span {
+			font-size: 20px;
+			line-height: 40px;
+			margin: 5px 20px 0 20px;
+		}
+	}
 }
 
 footer {
