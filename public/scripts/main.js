@@ -29,16 +29,53 @@ $(function() {
 					self.fetchResults();
 				}
 			});
+
+			[].forEach.call(document.querySelectorAll('.keuze a'), function(link) {
+				link.addEventListener('click', function (evt) {
+					evt.preventDefault();
+
+					if (!self.result.fighterOne) {
+						return;
+					}
+
+					if (Array.prototype.indexOf.call(link.classList, 'active') > -1) {
+						return; 
+					}
+
+					if (self.counting) {
+						return;
+					}
+
+					if (self.activeRound > 2 || self.gameOver) {
+						return;
+					}
+
+					self.setCategoryActive(link.id);
+					link.classList.add('active');
+					self.nextRound();
+					self.setCounters();
+					self.startCounters();
+				});
+			});
 		},
 
 		reset: function() {
 			this.activeRound = 0;
 			this.numFighters = 0;
 			this.counters = [];
+			this.categories = ['twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers'];
+			this.result = {};
+			this.gameOver = false;
+			this.fighters = {};
 
 			[].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
 				fighter.className = className;
+			});
+
+			[].forEach.call(document.querySelectorAll('.keuze a'), function(link) {
+				var className = link.className.replace(/active/, '');
+				link.className = className;
 			});
 		},
 
@@ -56,11 +93,23 @@ $(function() {
 			}
 
 			fighter.classList.add('active-' + numFighters);
+
+			if (1 === numFighters) {
+				document.querySelector('.player1 img').src = fighter.src;
+				this.fighters.fighterOne = fighter.getAttribute('data-fighter');
+
+			}
+
+			if (2 === numFighters) {
+				document.querySelector('.player2 img').src = fighter.src;
+				this.fighters.fighterTwo = fighter.getAttribute('data-fighter');
+			}
+
 			this.numFighters = numFighters;
 		},
 
-		selectTopic: function(topic) {
-			this.activeTopic = topic;
+		setCategoryActive: function(topic) {
+			this.activeCategory = this.categories[topic];
 		},
 
 		nextRound: function() {
@@ -71,24 +120,34 @@ $(function() {
 			var request = new XMLHttpRequest();
 			var self = this;
 
-			request.open('GET', '/app/Bart Staes/Bart Staes', true);
+			request.open('GET', '/app/' + this.fighters.fighterOne + '/' + this.fighters.fighterTwo, true);
 			request.onload = function() {
 				if (200 === this.status) {
 					self.result = JSON.parse(this.responseText);
-					self.setCounters();
-					self.startCounters();
+					self.result.fighterOne.lives = 100;
+					self.result.fighterTwo.lives = 100;
 				}
 			};
 			request.send();
 		},
 
 		setCounters: function() {
-			this.counters[0] = this.result.fighterOne.facebook.likes;
-			this.counters[1] = this.result.fighterTwo.facebook.likes;
+			if (!this.result.fighterOne) {
+				return;
+			}
+
+			switch (this.activeCategory) {
+				case 'twitterFollowers':
+					this.counters[0] = this.result.fighterOne.twitter.followers;
+					this.counters[1] = this.result.fighterTwo.twitter.followers;
+					break;
+			}
 		},
 
-		startCounters: function() {
+		startCounters: function() {			
 			var self = this;
+
+			this.counting = false;
 
 			var items = document.querySelectorAll('.fight1, .fight2');
 			[].forEach.call(items, function(item) {
@@ -105,7 +164,9 @@ $(function() {
 
 					cont = false;
 
-					if (value + 10 < max) {
+					if (value + 100 < max) {
+						value += 100;
+					} else if (value + 10 < max) {
 						value += 10;
 					} else {
 						value++;
@@ -118,7 +179,43 @@ $(function() {
 				});
 
 				if (cont) return requestAnimFrame(loop);
+
+				self.declareRoundWinner();
 			})();
+		},
+
+		declareRoundWinner: function() {
+			var self = this;
+
+			this.counting = false;
+
+			if (this.counters[0] < this.counters[1]) {
+				this.result.fighterOne.lives -= 50;
+			} else if (this.counters[0] > this.counters[1]) {
+				this.result.fighterTwo.lives -= 50;
+			} else {
+				this.result.fighterOne.lives -= 50;
+				this.result.fighterTwo.lives -= 50;
+			}
+
+			document.querySelector('.player1 .level span').style.width = this.result.fighterOne.lives + '%';	
+			document.querySelector('.player2 .level span').style.width = this.result.fighterTwo.lives + '%';
+
+			setTimeout(function() {
+				self.checkWinner();
+			}, 0);
+		},
+
+		checkWinner: function() {
+			if (0 === this.result.fighterOne.lives) {
+				return alert('Fighter 2 wins!');
+				this.gameOver = true;
+			}
+
+			if (0 === this.result.fighterTwo.lives) {
+				return alert('Fighter 1 wins!');
+				this.gameOver = true;
+			}
 		}
 	};
 
