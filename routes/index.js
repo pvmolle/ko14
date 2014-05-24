@@ -176,13 +176,28 @@ exports.getData = function (req, res) {
                 getPosi(idTwo, fighterTwo, 'negative', function (twoNega) {
                     getMentions(idOne , function(oneMen){
                         getMentions(idTwo , function(twoMen){
-                            res.json({ fighterOne: createObject(oneOId, fighterOne, onePosi, oneNega , oneMen), fighterTwo: createObject(twoOId, fighterTwo, twoPosi, twoNega , twoMen) });
+                            getFollowers(idOne , function(oneF){
+                                getFollowers(idTwo , function(twoF){
+                                    res.json({ fighterOne: createObject(oneOId, fighterOne, onePosi, oneNega , oneMen, oneF), fighterTwo: createObject(twoOId, fighterTwo, twoPosi, twoNega , twoMen , twoF) });
+                                });
+                            });
                         });
                     });
                 });
             });
         });
     });
+};
+
+var createFollowersParams = function (id) {
+    return  {
+        facetdefinitions:  '[{"key":{"field":"date.added","grouping":"month"},"value":{"field":"users"},"segmentation":null,"type":"insights"}]',
+        filter: "language:nl",
+        date_from: '2014-04-26T22:00:00+00:00',
+        date_to: '2014-05-24T21:59:59+00:00',
+        topic_ids: '26701,26724,26737,26704,26727,26706,26760,26709,26744,26723,26722,26713,26718,25663,25657,26736,25664,25658,25656,26759,25661,25660,26738,25654,26721,25662,25659,26804,26795,26788,26798,26799,26800,26789,26805,26790,26801,26791,26792,26806,26797,26802,26803,26796,26793,26794,25558,25559,25560,25561,25570,25562,25563,25571,25565,25566,25567,25568,25569,26808,26809,26810,26811,26815,26817,26812,26813,26816,26814,25544,26755,26758,25545,25546,26735,25547,25548,25549,26756,25550,25551,25552,26731,25553,25554,25555,25556,25557',
+        profile_ids: id
+    };
 };
 
 var createMentionsParams = function (id) {
@@ -237,9 +252,20 @@ var getMentions = function(id , cb){
     });
 };
 
-var createObject = function (id, name, posiT, negaT, men) {
+var getFollowers = function(id,cb){
+    getFacets(token, createFollowersParams(id), function (data) {
+        var obj = JSON.parse(data);
+
+        var p = obj.response[0].data[0];
+
+        cb(p[1]);
+    });
+}
+
+var createObject = function (id, name, posiT, negaT, men , follow) {
     var twitter = politicians[id].twitter;
     twitter['mentions'] = men;
+    twitter['followers'] = follow;
 
     return {
         name: name,
