@@ -147,10 +147,17 @@ $(function() {
 					self.result = JSON.parse(this.responseText);
 					self.result.fighterOne.lives = 100;
 					self.result.fighterTwo.lives = 100;
+                    self.scrollToWindow('battle');
 				}
 			};
 			request.send();
 		},
+
+        scrollToWindow: function(id){
+            $('html, body').animate({
+                scrollTop: $('#' + id).offset().top
+            }, 1000);
+        },
 
 		setCounters: function() {
 			if (!this.result.fighterOne) {
@@ -171,8 +178,8 @@ $(function() {
                     this.counters[1] = this.result.fighterTwo.positives.twitterPositive;
                     break;
                 case 'engament':
-                    this.counters[0] = this.result.fighterOne.twitter.engamement + this.result.fighterOne.facebook.engamement;
-                    this.counters[1] = this.result.fighterTwo.twitter.engamement + this.result.fighterOne.facebook.engamement;
+                    this.counters[0] = this.result.fighterOne.twitter.engament + this.result.fighterOne.facebook.engament;
+                    this.counters[1] = this.result.fighterTwo.twitter.engament + this.result.fighterOne.facebook.engament;
                     break;
                 case 'applause':
                     this.counters[0] = this.result.fighterOne.twitter.applause + this.result.fighterOne.facebook.applause;
