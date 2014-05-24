@@ -7,6 +7,7 @@ body {
 	background: url(../images/background.png) repeat;
 	font-family: $font2;
 	color: rgba(0,0,0,0.8);
+	overflow: hidden;
 }
 
 html {
@@ -68,7 +69,7 @@ main {
 
 		.button {
 			clear: both;
-			margin: 50px auto;
+			margin: 30px auto;
 			display: block;
 			width: 300px;
 			height: 60px;
