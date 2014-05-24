@@ -10,27 +10,87 @@ var politicians = [
     {
         name: 'Wouter Beke',
         twitter_id: 19452793,
-        id: 48016
+        id: 48016,
+        twitter : {
+            followers : 15732,
+            engament : 313.08,
+            applause : 25.28,
+            grow : 22,
+            interaction : 4787
+        },
+        facebook : {
+            fans : 5822,
+            engament : 2.69,
+            applause : 45.76
+        }
     },
     {
         name: 'Guy Verhofstadt',
         twitter_id: 856010760,
-        id: 47753
+        id: 47753,
+        twitter : {
+            followers : 26389,
+            engament : 37.9,
+            applause : 137.93,
+            grow : 99,
+            interaction : 57645
+        },
+        facebook : {
+            fans : 21664,
+            engament : 8.94,
+            applause : 191.27
+        }
     },
     {
         name: 'Bart Staes',
         twitter_id: 515620055,
-        id: 47736
+        id: 47736,
+        twitter : {
+            followers : 8303,
+            engament : 2.66,
+            applause : 7.3,
+            grow : 6,
+            interaction : 1657
+        },
+        facebook : {
+            fans : 0,
+            engament : 0,
+            applause : 0
+        }
     },
     {
         name: 'Kathleen Van Brempt',
         twitter_id: 381540723,
-        id: 47758
+        id: 47758,
+        twitter : {
+            followers : 5651,
+            engament : 4.69,
+            applause : 8.56,
+            grow : 7,
+            interaction : 1637
+        },
+        facebook : {
+            fans : 7419,
+            engament : 3.78,
+            applause : 43.56
+        }
     },
     {
         name: 'Siegfried Bracke',
         twitter_id: 144113849,
-        id: 47600
+        id: 47600,
+        twitter : {
+            followers : 24038,
+            engament : 23.15,
+            applause : 21.71,
+            grow : 18,
+            interaction : 3673
+        },
+        facebook : {
+            fans : 4656,
+            engament : 18,
+            applause : 47
+        }
     },
 ];
 
@@ -125,13 +185,17 @@ exports.getData = function (req, res) {
 
     var idOne;
     var idTwo;
+    var oneOId;
+    var twoOId;
 
     for (var y in politicians) {
         if (politicians[y]['name'] == fighterOne) {
             idOne = politicians[y]['id'];
+            oneOId = y;
         }
         if (politicians[y]['name'] == fighterTwo) {
             idTwo = politicians[y]['id'];
+            twoOId = y;
         }
     }
 
@@ -139,7 +203,7 @@ exports.getData = function (req, res) {
         getPosi(idTwo, fighterTwo,'positive', function (twoPosi) {
             getPosi(idOne, fighterOne,'negative', function (oneNega) {
                 getPosi(idTwo, fighterTwo,'negative', function (twoNega) {
-                    res.json({ fighterOne : createObject(fighterOne,onePosi,oneNega) , fighterTwo: createObject(fighterTwo,twoPosi,twoNega) });
+                    res.json({ fighterOne : createObject(oneOId,fighterOne,onePosi,oneNega) , fighterTwo: createObject(twoOId,fighterTwo,twoPosi,twoNega) });
                 });
             });
         });
@@ -172,22 +236,14 @@ var getPosi = function (id, name, sentiment,cb) {
     });
 };
 
-var createObject = function(name,posiT,negaT){
+var createObject = function(id,name,posiT,negaT){
     return {
         name: name,
-        twitter: {
-            followers: Math.ceil(Math.random() * 500),
-            retweets:  Math.ceil(Math.random() * 500),
-            favorites:  Math.ceil(Math.random() * 500),
-            engagmentRate:  Math.ceil(Math.random() * 500)
-        },
+        twitter: politicians[id].twitter,
         positives: {
             twitterPositive : posiT,
             twitterNegative : negaT
         },
-        facebook: {
-            likes:  Math.ceil(Math.random() * 500),
-            posts:  Math.ceil(Math.random() * 500),
-        }
+        facebook: politicians[id].facebook
     };
 };
