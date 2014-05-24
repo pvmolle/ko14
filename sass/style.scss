@@ -7,18 +7,19 @@ body {
 	background: url(../images/background.png) repeat;
 	font-family: $font2;
 	color: rgba(0,0,0,0.8);
+	max-width: 1600px;
+	background-width: 1592px;
+	position: relative;
+	margin: 0 auto;
 }
 
 html {
     height: 100%;
+    background: url(../images/tobig.png) repeat-y center center;
 }
 
-body {
-    height: 100%;
-}
-
-.start, .battle, .result {
-    min-height: 100%;
+.start, .battle {
+    height: 1500px;
 }
 
 main {
@@ -84,12 +85,13 @@ main {
 }
 
 .battle {
+	padding-top: 20px;
 
 	header {
 		background: url(../images/header-battle.png) no-repeat center center;
 		height: 170px;
 		width: 100%;
-		margin: 20px auto 0 auto;
+		margin: 0 auto;
 
 		.wrapper {
 			width: $width;
@@ -316,6 +318,7 @@ footer {
 	display: block;
 	float: left;
 	width: 100%;
+	background: url(../images/background.png) repeat;
 
     p {
         text-align: center;
