@@ -21,12 +21,20 @@ $(function() {
 					self.setFighterActive(this);
 				});
 			});
+
+			document.querySelector('.button').addEventListener('click', function(evt) {
+				evt.preventDefault();
+
+				if (2 === self.numFighters) {
+					self.fetchResults();
+				}
+			});
 		},
 
 		reset: function() {
 			this.activeRound = 0;
 			this.numFighters = 0;
-			this.counters = {};
+			this.counters = [];
 
 			[].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
@@ -39,6 +47,11 @@ $(function() {
 			numFighters++;
 
 			if (numFighters > 2) {
+				return;
+			}
+
+			if (/active/.test(fighter.className)) {
+				numFighters--;
 				return;
 			}
 
@@ -58,53 +71,56 @@ $(function() {
 			var request = new XMLHttpRequest();
 			var self = this;
 
-			request.open('GET', '/app/Wouter Beke/Guy Verhofstadt', true);
+			request.open('GET', '/app/Bart Staes/Bart Staes', true);
 			request.onload = function() {
 				if (200 === this.status) {
 					self.result = JSON.parse(this.responseText);
 					self.setCounters();
+					self.startCounters();
 				}
 			};
 			request.send();
 		},
 
 		setCounters: function() {
-			this.counters.fighterOne = this.result.fighterOne.facebook.likes;
-			this.counters.fighterTwo = this.result.fighterTwo.facebook.likes;
-			debugger;
+			this.counters[0] = this.result.fighterOne.facebook.likes;
+			this.counters[1] = this.result.fighterTwo.facebook.likes;
+		},
+
+		startCounters: function() {
+			var self = this;
+
+			var items = document.querySelectorAll('.fight1, .fight2');
+			[].forEach.call(items, function(item) {
+				item.innerHTML = 0;
+			});
+
+			(function loop() {
+				var cont = true;
+
+				[].forEach.call(items, function(item, idx) {
+
+					var value = +item.innerHTML;
+					var max = self.counters[idx];
+
+					cont = false;
+
+					if (value + 10 < max) {
+						value += 10;
+					} else {
+						value++;
+					}
+
+					if (value <= max) {
+						item.innerHTML = value;
+						cont = cont || true;
+					}
+				});
+
+				if (cont) return requestAnimFrame(loop);
+			})();
 		}
 	};
 
 	gameManager.init();
-	gameManager.fetchResults();
-
-	return;
-
-	var response = [1234, 1987];
-
-	(function loop() {
-		var items = document.querySelectorAll('.counter');
-		var cont = true;
-
-		[].forEach.call(items, function(item, idx) {
-
-			var value = +item.innerHTML;
-			var max = response[idx];
-
-			cont = false;
-
-			if (value + 10 < max) {
-				value += 10;
-			} else {
-				value++;
-			}
-
-			if (value <= max) {
-				item.innerHTML = value;
-				cont = cont || true;
-			}
-		});
-
-		if (cont) requestAnimFrame(loop);
-	})();
 });
