@@ -57,6 +57,12 @@ $(function() {
 					self.startCounters();
 				});
 			});
+
+            document.getElementById('reset').addEventListener('click',function(evt){
+                evt.preventDefault();
+                self.scrollToWindow('start');
+                self.reset();
+            });
 		},
 
 		reset: function() {
@@ -67,8 +73,10 @@ $(function() {
 			this.result = {};
 			this.gameOver = false;
 			this.fighters = {};
+            this.fighterOneSrc = null;
+            this.fighterTwoSrc = null;
 
-			[].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
+            [].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
 				fighter.className = className;
 			});
@@ -95,13 +103,15 @@ $(function() {
 			fighter.classList.add('active-' + numFighters);
 
 			if (1 === numFighters) {
+                this.fighterOneSrc = fighter.src;
 				document.querySelector('.player1 img').src = fighter.src;
 				this.fighters.fighterOne = fighter.getAttribute('data-fighter');
 
 			}
 
 			if (2 === numFighters) {
-				document.querySelector('.player2 img').src = fighter.src;
+                this.fighterTwoSrc = fighter.src;
+                document.querySelector('.player2 img').src = fighter.src;
 				this.fighters.fighterTwo = fighter.getAttribute('data-fighter');
 			}
 
@@ -252,14 +262,18 @@ $(function() {
 
 		checkWinner: function() {
 			if (0 === this.result.fighterOne.lives) {
-				return alert('Fighter 2 wins!');
+				document.getElementById('winner').src = this.fighterTwoSrc;
 				this.gameOver = true;
 			}
 
 			if (0 === this.result.fighterTwo.lives) {
-				return alert('Fighter 1 wins!');
+                document.getElementById('winner').src = this.fighterOneSrc;
 				this.gameOver = true;
 			}
+
+            if (this.gameOver){
+                this.scrollToWindow('result');
+            }
 		}
 	};
 
