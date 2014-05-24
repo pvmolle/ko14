@@ -1,0 +1,14 @@
+{
+	"name": "tipr-app",
+	"devDependencies": {
+		"grunt": "*",
+		"matchdep": "*",
+		"grunt-autoprefixer": "*",
+		"grunt-contrib-clean": "*",
+		"grunt-contrib-copy": "*",
+		"grunt-contrib-sass": "*",
+		"grunt-contrib-watch": "*",
+		"grunt-express": "*",
+		"grunt-open": "*"
+	}
+}
