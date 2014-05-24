@@ -27,6 +27,7 @@ $(function() {
 
 				if (2 === self.numFighters) {
 					self.fetchResults();
+                    document.querySelector('.overlay').style.display = 'block';
 				}
 			});
 
@@ -158,7 +159,8 @@ $(function() {
 					self.result.fighterOne.lives = 100;
 					self.result.fighterTwo.lives = 100;
                     self.scrollToWindow('battle');
-				}
+                    document.querySelector('.overlay').style.display = 'none';
+                }
 			};
 			request.send();
 		},

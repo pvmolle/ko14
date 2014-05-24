@@ -287,9 +287,12 @@ main {
 
 footer {
 	display: block;
-	text-align: center;
+	float: left;
 	width: 100%;
 
+    p {
+        text-align: center;
+    }
 	img {
 		width: 100px;
 	}
@@ -305,6 +308,7 @@ footer {
 	right: 0;
 	z-index: 9999;
 	background: rgba(0,0,0,0.7);
+    display: none;
 }
 .overlay .loading {
 	width: 200px;
