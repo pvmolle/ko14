@@ -3,6 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>KO14</title>
+	<meta property="og:title" content="" />
+	<meta property="og:site_name" content="Knock out 2014">
+	<meta property="og:description" content="Laat twee politieke figuren battelen tegen elkaar op sociaal vlak!" />
+	<meta property="og:site_name" content="Knock out 2014"><meta property="og:type" content="politician">
+
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -113,7 +118,12 @@
 
                 <a href="#" class="button" id="reset">Reset</a>
 				<div class="social">
-                	<a href="#" class="button2 facebook">Facebook</a><span> delen </span><a href="http://twitter.com/share?text=Ik deed de KO14 test&url=http://ko14.herokuapp.com&hashtags=ko14" class="button2 twitter">Twitter</a>
+
+				<script>
+				function fbs_click()
+				{u="http://ko14.herokuapp.com/";t="";window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}
+				</script>
+                	<a href="#" class="button2 facebook fb_link" onclick="return fbs_click()">Facebook</a><span> delen </span><a href="http://twitter.com/share?text=Ik deed de KO14 test!&url=http://ko14.herokuapp.com&hashtags=ko14," class="button2 twitter">Twitter</a>
                 </div>
             </div>
         </main>
