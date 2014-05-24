@@ -66,6 +66,7 @@ $(function() {
 			this.categories = ['twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers', 'twitterFollowers'];
 			this.result = {};
 			this.gameOver = false;
+			this.fighters = {};
 
 			[].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
@@ -92,6 +93,18 @@ $(function() {
 			}
 
 			fighter.classList.add('active-' + numFighters);
+
+			if (1 === numFighters) {
+				document.querySelector('.player1 img').src = fighter.src;
+				this.fighters.fighterOne = fighter.getAttribute('data-fighter');
+
+			}
+
+			if (2 === numFighters) {
+				document.querySelector('.player2 img').src = fighter.src;
+				this.fighters.fighterTwo = fighter.getAttribute('data-fighter');
+			}
+
 			this.numFighters = numFighters;
 		},
 
@@ -107,7 +120,7 @@ $(function() {
 			var request = new XMLHttpRequest();
 			var self = this;
 
-			request.open('GET', '/app/Guy Verhofstadt/Bart Staes', true);
+			request.open('GET', '/app/' + this.fighters.fighterOne + '/' + this.fighters.fighterTwo, true);
 			request.onload = function() {
 				if (200 === this.status) {
 					self.result = JSON.parse(this.responseText);
