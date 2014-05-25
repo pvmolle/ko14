@@ -152,7 +152,8 @@ main {
           -webkit-animation-duration: 2s;
           animation-timing-function: linear;
           -webkit-animation-timing-function: linear;
-          background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.15) 10px, rgba(255, 255, 255, 0.15) 20px); }
+          background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.15) 10px, rgba(255, 255, 255, 0.15) 20px);
+          transition: width 1s ease-in-out; }
       .battle header .player2 .turn {
         color: #dd6d69;
         float: right;
