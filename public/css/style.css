@@ -5,12 +5,14 @@
   src: url("../fonts/homestead-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/homestead-regular-webfont.woff") format("woff"), url("../fonts/homestead-regular-webfont.ttf") format("truetype"), url("../fonts/homestead-regular-webfont.svg#homestead_regularregular") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 @font-face {
   font-family: 'vincentregular';
   src: url("../fonts/vincent-regular-webfont.eot");
   src: url("../fonts/vincent-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/vincent-regular-webfont.woff") format("woff"), url("../fonts/vincent-regular-webfont.ttf") format("truetype"), url("../fonts/vincent-regular-webfont.svg#vincentregular") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 #loader {
   position: absolute;
   bottom: 5%;
@@ -116,7 +118,8 @@ main {
           -webkit-animation-duration: 2s;
           animation-timing-function: linear;
           -webkit-animation-timing-function: linear;
-          background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.12) 10px, rgba(255, 255, 255, 0.12) 20px); }
+          background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.12) 10px, rgba(255, 255, 255, 0.12) 20px);
+          transition: width 1s ease-in-out; }
       .battle header .player1 .turn {
         color: #85c3bc;
         float: left;
