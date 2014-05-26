@@ -130,19 +130,19 @@ $(function() {
 
             switch (this.activeCategory){
                 case 'twitterFollowers':
-                    question = "Who has the most twitter followers?";
+                    question = 'Who has the most twitter followers?';
                     break;
                 case 'mentions':
-                    question = "Who is mentioned the most?";
+                    question = 'Who is mentioned the most?';
                     break;
                 case 'negaposi':
-                    question = "Who gets the most positive feedback?";
+                    question = 'Who gets the most positive feedback?';
                     break;
                 case 'engament':
-                    question = "Who engages the most with their followers?";
+                    question = 'Who engages the most with their followers?';
                     break;
                 case 'applause':
-                    question = "Who creates the most buzz?";
+                    question = 'Who creates the most buzz?';
                     break;
             }
 
