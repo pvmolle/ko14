@@ -76,6 +76,9 @@ $(function() {
 			this.fighters = {};
             this.fighterOneSrc = null;
             this.fighterTwoSrc = null;
+            document.querySelector('.player1 .level span').style.width = '100%';	
+			document.querySelector('.player2 .level span').style.width = '100%';
+			document.getElementById('question').innerHTML = '';
 
             [].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
