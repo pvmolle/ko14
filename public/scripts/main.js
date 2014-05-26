@@ -79,6 +79,9 @@ $(function() {
             document.querySelector('.player1 .level span').style.width = '100%';	
 			document.querySelector('.player2 .level span').style.width = '100%';
 			document.getElementById('question').innerHTML = '';
+			var button = document.querySelector('.button');
+			button.innerHTML = 'Choose your fighter...';
+			button.style.color = 'rgba(0, 0, 0, 0.4)';
 
             [].forEach.call(document.querySelectorAll('.fighter'), function(fighter) {
 				var className = fighter.className.replace(/active-./, '');
@@ -110,18 +113,21 @@ $(function() {
 			}
 
 			fighter.classList.add('active-' + numFighters);
+			var button = document.querySelector('.button');
 
 			if (1 === numFighters) {
                 this.fighterOneSrc = fighter.src;
 				document.querySelector('.player1 img').src = fighter.src;
 				this.fighters.fighterOne = fighter.getAttribute('data-fighter');
-
+				button.innerHTML = 'Choose your opponent...';
 			}
 
 			if (2 === numFighters) {
                 this.fighterTwoSrc = fighter.src;
                 document.querySelector('.player2 img').src = fighter.src;
 				this.fighters.fighterTwo = fighter.getAttribute('data-fighter');
+				button.innerHTML = 'Ready? Fight!';
+				button.style.color = 'rgba(0, 0, 0, 0.8)';
 			}
 
 			this.numFighters = numFighters;
