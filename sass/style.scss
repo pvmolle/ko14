@@ -31,13 +31,14 @@ main {
 		width: 200px;
 		margin-right: 25px;
 	}
+
 	.col:nth-child(5) {
 		margin-right: 0;
 	}
 }
 
-
 .start {
+	
 	header {
 		background: url(../images/header.png) no-repeat center center; 
 		width: 100%;
@@ -245,6 +246,7 @@ main {
 				font-family: $font2;
 				color: rgba(0,0,0,0.8);
 			}
+
 			.half:nth-child(1) {
 				border-bottom: 10px solid $blue;
 			}
@@ -258,6 +260,7 @@ main {
 }
 
 .result {
+
 	header {
 		background: url(../images/header-winner.png) no-repeat center center; 
 		width: 100%;
@@ -312,9 +315,11 @@ main {
 		.button2.facebook {
 			border: 3px solid #3b5998;
 		}
+
 		.button2.twitter {
 			border: 3px solid #00aced;
 		}
+
 		span {
 			font-size: 20px;
 			line-height: 40px;
@@ -334,13 +339,16 @@ footer {
         text-align: center;
         color: rgba(0,0,0,0.6);
     }
+
 	img {
 		width: 100px;
 	}
+
 	a {
 		color: rgba(0,0,0,0.6);
 		text-decoration: none;
 	}
+
 	.pink {
 		color: #dd4545;
 	}
@@ -358,6 +366,7 @@ footer {
 	background: rgba(0,0,0,0.7);
     display: none;
 }
+
 .overlay .loading {
 	width: 200px;
 	height: 225px;
@@ -368,11 +377,13 @@ footer {
 	margin-left: -112px;
 	position: absolute;
 }
+
 .loading img {
 	width: 200px;
 	height: 225px;
 	border-radius: 20px;
 }
+
 .loading h1 {
 	color: #fff;
 	font-size: 32px;
